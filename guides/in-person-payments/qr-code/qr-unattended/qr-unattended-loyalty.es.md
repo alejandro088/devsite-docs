@@ -15,7 +15,7 @@ Programa de fidelización es un objeto utilizado en el modelo desatendido que **
 >
 > ADVERTENCIA
 >
-> Ten en cuenta que el programa de fidelización es exclusivo del [modelo desatendido de Código QR](https://www.mercadopago.com.ar/developers/es/guides/in-person-payments/qr-code/qr-unattended/qr-unattended-part-a/).
+> Ten en cuenta que el programa de fidelización es exclusivo del [modelo desatendido de Código QR](https://www.mercadopago[FAKER][URL][DOMAIN]/developers/es/guides/in-person-payments/qr-code/qr-unattended/qr-unattended-part-a).
 
 ## ¿Cómo funciona?
 
@@ -63,34 +63,34 @@ Dentro de la orden, agrega el campo `loyalty` con todos sus datos requeridos com
 
 ## Atributos
 
-| Parámetro    | Tipo (*type*) | Descripción                                                 |
-| ------------- | -------------- |-----------------------------------------------------------|
-| `program`     | *String* | Programa de fidelización (Serviclub, CTC) |
-| `transaction_id`  | *String* (40)         | Número de transacción o comprobante. |
-| `invoice_number` | *String* (8)          | Número de comprobante definido por el integrador. Completar con ceros a la izquierda si tiene menos de 8 dígitos. Ej: “00000001” |
-| `transaction_date` | *String*          | Fecha y hora de la transacción (ISO 8601). |
-| `transaction_amount` | *Decimal*       | Importe total de la transacción.           |
-| `store_id` | *String* (5)         | Identificador único del comercio (APIES en caso de YPF, SiteID en caso de Shell). Completar con ceros a la izquierda si tiene menos de 5 dígitos. Ej: "00001" |
-| `products` | *Array*          | Lista de productos. |
-| `code` | *String*          | Código del producto. |
-| `quantity` | *Decimal*          | Cantidad de producto. Hasta 3 decimales. Ej: 20.513. |
-| `unit_price` | *Decimal*          | Precio unitario del producto.|
-| `unit` | *String*          | Unidad de medida (piece o litre). |
-| `cashier_identification` | *Object*          | Datos del empleado. |
-| `type` | *String*          | Tipo de documento. |
-| `number` | *String*          | ID del documento. En caso de no estar disponible enviar “00000000”. |
-| `period` | *String* (4)         | Número del período. En caso de no estar disponible enviar “0000”. |
-| `shift` | *String* (1)         | Número del turno. |
-| `affinity_plan` | *String* (1)          | Plan de afinidad (7). |
+| Parámetro | Tipo (*type*) | Descripción |
+| --- | --- | --- |
+| `program` | *String* | Programa de fidelización (Serviclub, CTC) |
+| `transaction_id`  | *String* (40) | Número de transacción o comprobante. |
+| `invoice_number` | *String* (8) | Número de comprobante definido por el integrador. Completar con ceros a la izquierda si tiene menos de 8 dígitos. Ej: “00000001” |
+| `transaction_date` | *String* | Fecha y hora de la transacción (ISO 8601). |
+| `transaction_amount` | *Decimal* | Importe total de la transacción.           |
+| `store_id` | *String* (5) | Identificador único del comercio (APIES en caso de YPF, SiteID en caso de Shell). Completar con ceros a la izquierda si tiene menos de 5 dígitos. Ej: "00001" |
+| `products` | *Array* | Lista de productos. |
+| `code` | *String*  | Código del producto. |
+| `quantity` | *Decimal* | Cantidad de producto. Hasta 3 decimales. Ej: 20.513. |
+| `unit_price` | *Decimal* | Precio unitario del producto.|
+| `unit` | *String* | Unidad de medida (piece o litre). |
+| `cashier_identification` | *Object* | Datos del empleado. |
+| `type` | *String* | Tipo de documento. |
+| `number` | *String* | ID del documento. En caso de no estar disponible enviar “00000000”. |
+| `period` | *String* (4) | Número del período. En caso de no estar disponible enviar “0000”. |
+| `shift` | *String* (1) | Número del turno. |
+| `affinity_plan` | *String* (1) | Plan de afinidad (7). |
 
 ## Programas de fidelización activos
 
 Actualmente contamos con los siguientes programas de fidelización.
 
-| Programa de fidelización    | Atributo `program`          |
-| ------------- | -----------------------------------------------|
-| Shell     | `CTC`          |
-| YPF  | `serviclub`          |    
+| Programa de fidelización | Atributo `program` |
+| --- | --- |
+| Shell | `CTC` |
+| YPF | `serviclub` |
 
 
 ## Códigos de producto
@@ -107,19 +107,22 @@ Códigos de producto **Shell (CTC)**:
 - 7 = PRODUCTO SHOP
 
 Códigos de producto **YPF (Serviclub)**:
+- 0 = PRODUCTO SHOP
 - 1 = SUPER XXI
 - 3 = ULTRADIESEL
 - 4 = INFINIA
 - 6 = EURODIESEL
+- 7 = GNC
 - 8 = D DIESEL 500
+- 11 = GENÉRICO BOXES
 
 ## Puntos a tener en cuenta
 
 1. El parámetro `quantity` no puede contener más de 3 puntos decimales.
-2. YPF no tiene productos de *Shop*.
-3. Para productos *Shop* en Shell, se hace el cálculo de `quantity` multiplicado por `unit_price` para calcular los puntos a cargar. Es por esto que debe ponerse `code = 7`, `quantity = 1` y `unit_price` = monto total de los productos vendidos en shop.
-4. La cantidad de puntos que se suman para combustibles, depende del código de producto (`code`) y la cantidad (`quantity`), validando la unidad en cuestión (`unit`). Cada producto suma una cantidad distinta en base a la cantidad cargada. Esta lógica la aplica directamente el programa de beneficios.
-5. El `transaction_id` debe ser único no solo para cada integrador, sino en todo el universo de operaciones de fidelización. Recomendamos concatenarlo con el `store_id` y la cara del surtidor.
+2. Para Producto shop, se hace el cálculo de `quantity` multiplicado por `unit_price` para calcular los puntos a cargar. Es por esto que debe ponerse el número de código de shop, `quantity = 1` y `unit_price` = monto total de los productos vendidos en shop.
+3. La cantidad de puntos que se suman para combustibles depende del código de producto (`code`) y la cantidad (`quantity`), validando la unidad (`unit`). Cada producto suma una cantidad distinta en base a la cantidad cargada. Esta lógica la aplica directamente el programa de fidelización.
+4. El `transaction_id` debe ser único tanto para cada integrador como para todo el universo de operaciones de fidelización. Recomendamos concatenarlo con el `store_id` y la cara del surtidor.
+5. Los códigos de combustible deben situarse siempre en el primer ítem del arreglo de productos. 
 
 
 ---
@@ -132,4 +135,4 @@ Códigos de producto **YPF (Serviclub)**:
 >
 > Conoce paso a paso cómo integrar este modelo.
 >
->[Integrar QR modelo desatendido](https://www.mercadopago.com.ar/developers/es/guides/in-person-payments/qr-code/qr-unattended/qr-unattended-part-a/)
+>[Integrar QR modelo desatendido](https://www.mercadopago[FAKER][URL][DOMAIN]/developers/es/guides/in-person-payments/qr-code/qr-unattended/qr-unattended-part-a)

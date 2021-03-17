@@ -26,8 +26,8 @@ Sólo puedes cancelar pagos que estén en estado `pending` o `in_process`. Cuand
 
 Las cancelaciones se utilizan principalmente con **medios en efectivo**.
 
-Si bien los tickets de los medios off se vencen a los 5 días, el usuario puede volver a generarlos ingresando a la transacción en su cuenta de Mercado Pago.
-Para cancelarlos efectivamente y que no se puedan volver a generar por otros 5 días, evitando problemas de retención de stock por ejemplo, es necesario que ejecutes su cancelación.
+Si bien los tickets de los medios de pago en efectivo tienen vencimiento, el usuario puede volver a generarlos ingresando a la transacción de su cuenta de Mercado Pago. Para cancelarlos definitivamente, sin posibilidad de volver a generarlos, evitando problemas de retención de stock por ejemplo, es necesario que ejecutes su cancelación.
+
 
 Para realizar la cancelación, realiza el siguiente request enviando el `status` en `cancelled`:
 
@@ -84,8 +84,11 @@ Puedes devolver un pago dentro de los **180 días** desde su acreditación.
 ----[mlc]----
 Puedes devolver un pago dentro de los **330 días** desde su acreditación.
 ------------
-----[mlu, mpe, mco]----
+----[mlu, mpe]----
 Puedes devolver un pago dentro de los **90 días** desde su acreditación.
+------------
+----[mco]----
+Puedes devolver un pago dentro de los **180 días** desde su acreditación.
 ------------
 
 Debes poseer suficiente dinero disponible en tu cuenta para devolver el monto del pago satisfactoriamente. De lo contrario obtendrás un error `400 Bad Request`.

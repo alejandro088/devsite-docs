@@ -15,33 +15,35 @@ sites_supported:
 
 Sabemos que alguns termos são novos. Antes de começar, os deixamos perto de suas mãos. 
 
-| Termo                            | Descrição                                                  |
-| -----------------------------------| ------------------------------------------------------------ | 
-| Credenciais (Credentials)         | Suas credenciais são as senhas que lhe fornecemos para que você possa configurar suas integrações. Para poder achá-las, vá para suas [credenciais]([FAKER][CREDENTIALS][URL]) e selecione as produtivas. |
-| `ACCESS_TOKEN` | É a senha privada do aplicativo para gerar pagamentos, dentro da secção [credenciais]([FAKER][CREDENTIALS][URL]). Deve utilizá-la para se identificar em suas integrações. Utiliza sempre as do **Modo Produção**.  |
+| Termo | Descrição |
+| --- | --- |
+| Credenciais (Credentials) | Suas credenciais são as senhas que lhe fornecemos para que você possa configurar suas integrações. Para poder achá-las, vá para suas [credenciais]([FAKER][CREDENTIALS][URL]) e selecione as produtivas. |
+| `ACCESS_TOKEN` | É a senha privada do aplicativo para gerar pagamentos, dentro da secção [credenciais]([FAKER][CREDENTIALS][URL]). Deve utilizá-la para se identificar em suas integrações. Utiliza sempre as do **Modo Produção**. |
 | `USER_ID` | É o ID do usuário vendedor em Mercado Pago, são os últimos dígitos do access_token, posterior do último hífen. Também conhecido como `COLLECTOR_ID`. |
 | `SPONSOR_ID` | É o ID do usuário fornecedor do sistema integrado com Mercado Pago, são os últimos dígitos do `access_token`, posterior do último hífen. O `sponsor_ID` não pode ser igual que o `USER_ID`. |
-| Loja (Store) | É uma **loja física** onde seus clientes podem adquirir seus produtos ou serviços. Você pode ter várias lojas numa mesma conta.  |
-| Caixa (POS) | É um **ponto de venda** que existe numa sucursal ou loja física. Cada caixa terá um código QR unívoco vinculado.  |
-| Ordem | É o pedido realizado pelo seu cliente. Contém uma relação de produtos com seu valor associado. 
+| Loja (Store) | É uma **loja física** onde seus clientes podem adquirir seus produtos ou serviços. Você pode ter várias lojas numa mesma conta. |
+| Caixa (POS) | É um **ponto de venda** que existe numa sucursal ou loja física. Cada caixa terá um código QR unívoco vinculado. |
+| Ordem | É o pedido realizado pelo seu cliente. Contém uma relação de produtos com seu valor associado. |
 
-> Encontre toda a informação sobre suas credenciais em nossas [perguntas frequentes](https://www.mercadopago.com.br/developers/pt/guides/resources/faqs/credentials/).
+> Encontre toda a informação sobre suas credenciais em nossas [perguntas frequentes](https://www.mercadopago[FAKER][URL][DOMAIN]/developers/pt/guides/resources/faqs/credentials).
 
 ## Requisitos prévios
 
-Para continuar, é necessário realizar o passos a seguir: 
+Observe estes pontos antes de começar: 
 
-### 1. Acesso à conta de Mercado Pago ou Mercado Livre
+### 1. Acesse uma conta
 
-Para poder começar a integração, é necessário **contar com uma conta de Mercado Pago ou Mercado Livre**. Se ainda não tiver uma, poderá [criar uma conta de Mercado Pago](https://www.mercadopago.com.br) quando quiser.
+Para poder começar a integração, é necessário **contar com uma conta de Mercado Pago ou Mercado Livre**. 
+
+Você pode [Entrar](https://www.mercadolibre.com/jms/[FAKER][GLOBALIZE][SITE_ID]/lgz/login?platform_id=mp&go=https://www.mercadopago[FAKER][URL][DOMAIN]/developers/pt/guides/in-person-payments/qr-code/pre-requisites) em uma conta existente no Mercado Pago ou no Mercado Livre ou [Criar uma nova conta](https://www.mercadopago[FAKER][URL][DOMAIN]) no Mercado Pago.
 
 > NOTE
 > 
 > Nota
 > 
-> Se for operar em nome de outros, você pode trabalhar com credenciais deles de uma forma mais fácil e segura por [Marketplace](https://www.mercadopago.com.br/developers/pt/guides/online-payments/marketplace/checkout-api/introduction/).
+> Se for operar em nome de outros, você pode trabalhar com credenciais deles de uma forma mais fácil e segura por [Marketplace](https://www.mercadopago[FAKER][URL][DOMAIN]/developers/pt/guides/online-payments/marketplace/checkout-api/introduction).
 
-### 2. Gerar usuários de teste
+### 2. Gere usuários de teste
 
 Para realizar os testes, é necessário que você tenha, no mínimo, dois usuários: um comprador e um vendedor. 
 
@@ -52,7 +54,7 @@ curl -X POST \
 -H "Content-Type: application/json" \
 -H 'Authorization: Bearer ACCESS_TOKEN' \
 "https://api.mercadopago.com/users/test_user"
--d '{"site_id":"[FAKER][SITE][ID]"}'
+-d '{"site_id":"[FAKER][GLOBALIZE][UPPER_SITE_ID]"}'
 ```
 
 > NOTE
@@ -94,4 +96,4 @@ Uma vez que os usuários de teste são criados, você pode começar com a integr
 >
 > Para realizar a integração, primeiramente deverá configurar suas lojas e caixas.
 >
-> [Lojas e Caixas](https://www.mercadopago.com.br/developers/pt/guides/in-person-payments/qr-code/stores-pos/)
+> [Lojas e Caixas](https://www.mercadopago[FAKER][URL][DOMAIN]/developers/pt/guides/in-person-payments/qr-code/stores-pos)
